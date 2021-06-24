@@ -56,37 +56,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/avatar_text_label" />
 
-    <EditText
+    <TextView
         android:id="@+id/username_text"
         android:layout_width="0dp"
         android:layout_height="42dp"
         android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
         android:layout_marginBottom="4dp"
-        android:ems="10"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/email_text"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="blah blah hladsdasds as ad ad"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/barrier"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include_avatar_picker" />
 
-    <EditText
-        android:id="@+id/email_text"
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="email_cc"
+        />
+
+    <include
+        android:id="@+id/email_cc"
         android:layout_width="0dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="34dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/password_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_text" />
+        app:layout_constraintTop_toBottomOf="@+id/include_avatar_picker"
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_percent="0.4"
+        layout="@layout/item_email"/>
 
+<!--    <TextView
+        android:id="@+id/email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/password_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_avatar_picker"
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_percent="0.4"
+        android:text="email "
+        android:textSize="20sp" />
+    -->
     <EditText
         android:id="@+id/password_text"
         android:layout_width="0dp"
@@ -99,7 +113,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_text" />
+        app:layout_constraintTop_toBottomOf="@+id/email_cc" />
 
     <Button
         android:id="@+id/signup_btn"

@@ -1,37 +1,38 @@
-Android Architecture Components Advanced Navigation Sample
-==============================================
+## Description 
 
-### Features
+Barrier in constraint layout is matching to maximum percent specified in the <include> layout params.
 
-This sample showcases the behavior of a bottom navigation view following the [Principles of
-Navigation](https://developer.android.com/topic/libraries/architecture/navigation#fixed).
+Checkout `fragment_register.xml`. 
 
- * Fixed start destination
- * Navigation state should be represented via a stack of destinations
- * The Up button never exits your app
- * Up and Back are identical within your app's task
- * Deep linking and navigating to a destination should yield the same stack
 
-Check out the
-[UI tests](https://github.com/googlesamples/android-architecture-components/tree/master/NavigationAdvancedSample/app/src/androidTest/java/com/example/android/navigationadvancedsample)
-to learn about specific scenarios.
+In this `include` I am including `item_email.xml` and specifying maximum width percentage of 40% by using  `layout_constraintWidth_percent`. 
+By default, this include layout width should wrap but instead it ends up taking 40%.
 
-License
--------
 
-Copyright 2018 The Android Open Source Project, Inc.
+```xml
 
-Licensed to the Apache Software Foundation (ASF) under one or more contributor
-license agreements.  See the NOTICE file distributed with this work for
-additional information regarding copyright ownership.  The ASF licenses this
-file to you under the Apache License, Version 2.0 (the "License"); you may not
-use this file except in compliance with the License.  You may obtain a copy of
-the License at
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="email_cc"
+        />
 
-http://www.apache.org/licenses/LICENSE-2.0
+    <include
+        android:id="@+id/email_cc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="34dp"
+        app:layout_constraintBottom_toTopOf="@+id/password_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include_avatar_picker"
+        app:layout_constraintWidth_max="wrap"
+        app:layout_constraintWidth_percent="0.4"
+        layout="@layout/item_email"/>
+```  
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-License for the specific language governing permissions and limitations under
-the License.
+## This works fine in following conditions
+
+- If I remove include and directly use the view.
+- If I use constraintLayout version 1.1.3. Only latest constraint layout >2.0.0 has this issue.
